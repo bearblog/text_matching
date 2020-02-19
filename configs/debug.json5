@@ -1,0 +1,12 @@
+[
+    {
+        name: 'benchmark',
+        __parents__: [
+            'default',
+            'data/douban_debug',
+        ],
+        __repeat__: 1,
+        eval_file: 'dev',
+        debug_mode: true,
+    }
+]

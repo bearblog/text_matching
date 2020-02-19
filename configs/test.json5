@@ -1,0 +1,13 @@
+[
+    {
+        name: 'benchmark',
+        __parents__: [
+            'default',
+            'task/douban',
+        ],
+        __repeat__: 1,
+        eval_file: 'test',
+        debug_mode: false,
+        data_mode: 'douban',
+    }
+]

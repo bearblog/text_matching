@@ -1,0 +1,48 @@
+{
+    output_dir: 'douban3',
+    metric: 'mrr',
+    watch_metrics: ['map', 'p@1', 'f1'],
+    data: {
+          data_dir: 'data/douban3',
+          min_df: 5,
+          max_vocab: 999999, // capacity for words including out of embedding words
+          max_len_c: 128, /
+      / max length for context
+          max_len_q: 30, // max length for query or response
+          min_len: 1,
+          lower_case: false, // whether to treat the data and embedding as lowercase.
+          sort_by_len: false,
+          pretrained_mode: "word2vec",
+          pretrained_embeddings: 'resources/tencent_200_plus_word2vec_200.txt',
+//          pretrained_bert: 'resources/chinese_wwm_L-12_H-768_A-12',
+          embedding_dim: 400,
+      },
+
+
+    model: {
+        enc_layers: 3,
+        blocks: 3,
+        hidden_size: 200,
+        alignment: 'identity',
+        prediction: 'full',
+        fix_embeddings: true,
+    },
+
+  logging: {
+        summary_per_logs: 40,
+    },
+
+    routine: {
+        epochs: 100,
+        log_per_samples: 2560,
+        eval_per_samples: 64000,
+        tolerance_samples: 5120000,
+        eval_epoch: false,
+    },
+
+    optim: {
+        lr: 1e-4,
+        lr_decay_rate: 1.0,
+        batch_size: 128,
+    },
+}

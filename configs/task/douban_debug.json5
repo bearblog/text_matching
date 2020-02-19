@@ -1,0 +1,44 @@
+{
+    output_dir: 'douban_debug',
+    metric: 'f1',
+    watch_metrics: ['map', 'p@1', 'mrr'],
+    data: {
+          data_dir: 'data/douban',
+          min_df: 5,
+          max_vocab: 999999, // capacity for words including out of embedding words
+          max_len_q: 200, // max length for query
+          max_len_r: 30, // max length for response
+          min_len: 1,
+          lower_case: false, // whether to treat the data and embedding as lowercase.
+          sort_by_len: false,
+          pretrained_embeddings: 'resources/tencent_200_plus_word2vec_200.txt',
+          embedding_dim: 400,
+      },
+
+
+    model: {
+        enc_layers: 3,
+        blocks: 2,
+        hidden_size: 200,
+        prediction: 'full',
+        fix_embeddings: false,
+    },
+
+  logging: {
+        summary_per_logs: 40,
+    },
+
+    routine: {
+        epochs: 5,
+        log_per_samples: 512,
+        eval_per_samples: 256,
+        tolerance_samples: 256000,
+        eval_epoch: false,
+    },
+
+    optim: {
+        lr: 1e-4,
+        lr_decay_rate: 1.0,
+        batch_size: 64,
+    },
+}
